@@ -23,17 +23,7 @@ export default function CardItem({
     <Draggable draggableId={Id} index={index} key={Id}>
       {(provided) => (
         <div
-          className={`py-2 flex flex-col justify-between items-center h-40 border-2  shadow-xl rounded-lg${
-            dragZone
-              ? `${
-                  checkAtom
-                    ? value?.includes(parseInt(Id))
-                      ? `border-green-500`
-                      : `border-red-500`
-                    : `border-gray-200`
-                }`
-              : "border-gray-200"
-          }`}
+          className={`py-2 flex flex-col justify-between items-center h-40 border-2  shadow-xl rounded-lg ${dragZone? `${checkAtom? value?.includes(parseInt(Id))? `border-green-500`: `border-red-500`: `border-gray-200`}`: "border-gray-200"}`}
           {...provided.dragHandleProps}
           {...provided.draggableProps}
           ref={provided.innerRef}
