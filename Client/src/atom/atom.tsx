@@ -1,7 +1,6 @@
 import { atom } from "recoil";
 import { models, ImageModel } from "../model/models";
 
-
 export const DragAtom = atom<ImageModel[]>({
   key: "DragAtom",
   default: models,
@@ -23,5 +22,5 @@ export const PathAtom = atom<ImageModel[]>({
 
 export const CheckAtom = atom({
   key: "CheckAtom",
-  default: false
-})
+  default: false,
+});

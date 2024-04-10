@@ -1,13 +1,15 @@
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { CheckAtom, DragAtom, LoadAtom, PathAtom, SourceAtom } from "../atom/atom";
 import { models } from "../model/models";
+import { FaCheck } from "react-icons/fa6";
+import { GrPowerReset } from "react-icons/gr";
 
 export default function ButtonBar() {
-  const [dragAtom, setDragAtom] = useRecoilState(DragAtom);
-  const [sourceAtom, setSourceAtom] = useRecoilState(SourceAtom);
-  const [loadAtom, setLoadAtom] = useRecoilState(LoadAtom);
-  const [pathAtom, setPathAtom] = useRecoilState(PathAtom);
-  const [checkAtom, setCheckAtom] = useRecoilState(CheckAtom);
+  const setCheckAtom = useSetRecoilState(CheckAtom);
+  const setPathAtom = useSetRecoilState(PathAtom);
+  const setLoadAtom = useSetRecoilState(LoadAtom);
+  const setSourceAtom = useSetRecoilState(SourceAtom);
+  const setDragAtom = useSetRecoilState(DragAtom);
 
   function reset() {
     setSourceAtom([]);
@@ -17,26 +19,26 @@ export default function ButtonBar() {
   }
 
   function check() {
-      setCheckAtom(true);
-      setTimeout(() => {
-        setCheckAtom(false);
-      }, 1000);
-}
+    setCheckAtom(true);
+    setTimeout(() => {
+      setCheckAtom(false);
+    }, 1000);
+  }
 
   return (
-    <div className="text-center">
+    <div className="flex text-center justify-center items-center">
       <button
         onClick={check}
-        className="w-20 h-10 m-6 p-2 rounded-xl bg-green-500 focus:outline-none"
+        className="w-20 h-10 m-6 p-2 flex item-center text-center gap-1 rounded-lg bg-green-500 "
       >
-        Check
+        <FaCheck className="pt-1 text-lg" /><span>Check </span>
       </button>
 
       <button
         onClick={reset}
-        className="w-20 h-10 m-6 p-2 rounded-xl bg-yellow-400 focus:outline-none "
+        className="w-20 h-10 m-6 p-2 flex item-center text-center gap-1 rounded-lg bg-yellow-400 "
       >
-        Reset
+        <GrPowerReset className="pt-1 text-lg"/>   <span>Reset</span>
       </button>
     </div>
   );

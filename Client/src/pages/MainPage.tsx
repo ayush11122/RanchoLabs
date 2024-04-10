@@ -5,7 +5,7 @@ import DropElement from "../Components/DropElement";
 export default function MainPage() {
   return (
     <>
-      <div className="flex mb-10 justify-evenly">
+      <div className="flex sm:flex-row flex-col mb-10 sm:justify-evenly items-center">
         <DropElement />
         <DragElement />
       </div>
