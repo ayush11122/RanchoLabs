@@ -2,6 +2,7 @@ import Card from "./Card";
 import { Droppable } from "react-beautiful-dnd";
 import { useRecoilValue } from "recoil";
 import { DragAtom } from "../atom/atom";
+import { ImageModel } from "../model/models";
 
 export default function DragElement() {
   const dragAtom = useRecoilValue(DragAtom);
@@ -13,12 +14,13 @@ export default function DragElement() {
           ref={provided.innerRef}
           {...provided.droppableProps}
         >
-          {dragAtom.map((card: any, index: any) => (
+          {dragAtom.map((card: ImageModel, index: number) => (
             <Card
+              Id={card.id}
               key={index}
               index={index}
               name={card.name}
-              image={card.imageUrl}
+              imageUrl={card.imageUrl}
             />
           ))}
           {provided.placeholder}

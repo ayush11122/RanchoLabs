@@ -1,3 +1,4 @@
+
 export interface ImageModel {
     id: string;
     name: string;
@@ -7,7 +8,7 @@ export interface ImageModel {
 export const models = [
     {
         id: "1",
-        name: "battery",
+        name: 'battery',
         imageUrl: 'assets/9vBattery.png'
     },
     {   
