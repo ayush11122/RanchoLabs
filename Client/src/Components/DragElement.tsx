@@ -1,15 +1,29 @@
-import '../index.css'
-import CardItem from './CardItem'
-import { useState } from 'react'
-import { models } from '../models/models';
-export default function DragElement(){
-    const [card, setCard] = useState(models);
-    return <div className="rounded-2xl w-4/12 mt-16 p-6 grid grid-cols-3 gap-4" style={{ boxShadow: "0px 2.51px 10.65px 0px #4A55EA4D" }}>
-        {card.map((card)=>(
-            <CardItem 
-            name={card.name}
-            image={card.imageUrl}
+import Card from "./Card";
+import { Droppable } from "react-beautiful-dnd";
+import { useRecoilValue } from "recoil";
+import { DragAtom } from "../atom/atom";
+
+export default function DragElement() {
+  const dragAtom = useRecoilValue(DragAtom);
+  return (
+    <Droppable droppableId="DragElement">
+      {(provided) => (
+        <div
+          className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 sm:w-4/12 w-3/12 rounded-2xl border-2 border-gray-200 mt-16 p-6  gap-4 shadow-xl "
+          ref={provided.innerRef}
+          {...provided.droppableProps}
+        >
+          {dragAtom.map((card: any, index: any) => (
+            <Card
+              key={index}
+              index={index}
+              name={card.name}
+              image={card.imageUrl}
             />
-        ))}
+          ))}
+          {provided.placeholder}
         </div>
+      )}
+    </Droppable>
+  );
 }

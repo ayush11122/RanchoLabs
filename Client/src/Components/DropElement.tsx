@@ -1,31 +1,15 @@
-import "../index.css";
+import { useRecoilValue } from "recoil";
+import { SourceAtom, LoadAtom, PathAtom } from "../atom/atom";
+import DropRow from "./DropRow";
+import { ImageModel } from "../model/models";
 export default function DropElement() {
+  const atom: ImageModel[] = useRecoilValue(LoadAtom);
+  console.log(atom);
   return (
-    <>
-      <div className="w-4/12 mt-16 grid grid-row-3 gap-2 py-4">
-       
-        <div className=" my-2 rounded-xl bg-white flex items-center gap-3 p-3 shadow-slate-400 shadow-md border-2 border-slate-200">
-            <div className="w-1/6 text-center bg-blue-600 text-white px-4 py-2 rounded-lg">
-              Source
-          </div>
-          <div className="w-full font-bold text-gray-300 text-4xl text-center "> Drags items here...</div>
-        </div>
-
-        <div className=" my-2 rounded-xl bg-white flex items-center gap-3 p-3 shadow-slate-400 shadow-md border-2 border-slate-200">
-            <div className="w-1/6 text-center bg-blue-600 text-white px-4 py-2 rounded-lg">
-              Path
-          </div>
-          <div className="w-full font-bold text-gray-300 text-4xl text-center "> Drags items here...</div>
-        </div>
-
-        <div className=" my-2 rounded-xl bg-white flex items-center gap-3 p-3 shadow-slate-400 shadow-md border-2 border-slate-200">
-            <div className="w-1/6 text-center bg-blue-600 text-white px-4 py-2 rounded-lg">
-              Load
-          </div>
-          <div className="w-full font-bold text-gray-300 text-4xl text-center "> Drags items here...</div>
-        </div>
-
-      </div>
-    </>
+    <div className="xl:w-5/12 w-1/2 py- mt-16 grid grid-col-3 gap-2">
+      <DropRow title="Source" atom={SourceAtom} value={[1,3,7]} ></DropRow>
+      <DropRow title="Load" atom={LoadAtom} value={[2,5,6]}></DropRow>
+      <DropRow title="Path" atom={PathAtom} value={[4,8,9]}></DropRow>
+    </div>
   );
 }
